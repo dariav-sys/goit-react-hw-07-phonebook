@@ -1,0 +1,23 @@
+.data_input {
+  border: none;
+  border-radius: 5px;
+  height: 20px;
+  margin: 0 auto;
+  display: block;
+  padding: 14px;
+}
+
+.add_button {
+  background-color: rgb(135, 159, 231);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  width: 60px;
+  margin: 20px auto;
+  display: block;
+}
+
+.form {
+  margin: 0 auto;
+}

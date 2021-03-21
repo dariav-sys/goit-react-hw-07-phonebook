@@ -1,0 +1,17 @@
+.contact {
+  display: flex;
+  margin: 10px;
+  font-size: 15px;
+  font-style: italic;
+  align-items: center;
+}
+
+.button {
+  margin: 10px;
+  background-color: rgb(216, 144, 144);
+  color: white;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  text-transform: uppercase;
+}
