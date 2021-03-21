@@ -20,5 +20,5 @@ export const deleteContactSuccess = createAction(
 );
 export const deleteContactError = createAction('contacts/deleteContactError');
 
-export const deleteContact = createAction('phonebook/Delete');
+export const deleteContact = createAction('phonebook/delete');
 export const changeFilter = createAction('phonebook/changeFilter');

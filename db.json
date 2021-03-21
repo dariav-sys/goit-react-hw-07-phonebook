@@ -1,24 +1,9 @@
 {
   "contacts": [
     {
-      "name": "Daria Viter",
+      "name": "jaskx",
       "number": "645-17-79",
       "id": 1
-    },
-    {
-      "name": "Rosie",
-      "number": "645-17-79",
-      "id": 2
-    },
-    {
-      "name": "Daria Viter",
-      "number": "44444",
-      "id": 3
-    },
-    {
-      "name": "xas",
-      "number": "645-17-79",
-      "id": 4
     }
   ]
 }
