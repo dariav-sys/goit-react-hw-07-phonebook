@@ -2,18 +2,20 @@
   "name": "goit-react-hw-02-feedback",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dariav-sys.github.io/goit-react-hw-06-phonebook",
+  "homepage": "https://dariav-sys.github.io/goit-react-hw-07-phonebook",
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.7.3",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "gh-pages": "^3.1.0",
     "modern-normalize": "^1.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-loader-spinner": "^4.0.0",
     "react-redux": "^7.2.2",
     "react-scripts": "4.0.3",
     "redux": "^4.0.5",
@@ -28,7 +30,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "api-server": "json-server --port 4040 --delay 300 --watch db.json"
   },
   "eslintConfig": {
     "extends": [
