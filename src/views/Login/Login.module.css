@@ -1,12 +1,25 @@
-.input {
-  border: none;
-  border-radius: 5px;
-  height: 20px;
-  margin: 0 auto;
-  margin-bottom: 10px;
+.form {
+  width: 350px;
 
-  display: block;
-  padding: 14px;
+  padding: 20px;
+  box-shadow: 0 2px 20px rgb(27 23 23 / 38%);
+  background-color: rgb(29 145 179 / 32%);
+  margin: 0 auto;
+  margin-top: 40px;
+  border-radius: 5px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.input {
+  border-radius: 7px;
+  border: none;
+  padding: 5px;
+  outline: none;
 }
 
 .button {
@@ -20,15 +33,11 @@
   transition: 0.2s ease-in-out;
   margin: 0 auto;
   margin-top: 20px;
-  margin-bottom: 30px;
+
   cursor: pointer;
 }
 
 .button:hover {
   background: rgba(33, 17, 177, 0.658);
   color: #fff;
-}
-
-.form {
-  margin: 0 auto;
 }

@@ -1,0 +1,33 @@
+.usermenuCont {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.avatarImg {
+  margin-right: 10px;
+}
+
+.userName {
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+.button {
+  text-decoration: none;
+  display: block;
+  padding: 4px;
+  overflow: hidden;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(27, 27, 27, 0.164);
+  transition: 0.2s ease-in-out;
+  margin: 0 auto;
+
+  cursor: pointer;
+}
+
+.button:hover {
+  background: rgba(148, 22, 22, 0.658);
+  color: #fff;
+}

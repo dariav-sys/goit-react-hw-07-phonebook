@@ -1,2 +1,12 @@
-export { default as phonebookOperations } from './contacts-operations';
-export { default as phonebookSelectors } from './contacts-selectors';
+export {
+  addContact,
+  deleteContact,
+  fetchContacts,
+} from './contacts-operations';
+export {
+  getLoading,
+  getFiltered,
+  getAllContactsItems,
+  getErrorMessage,
+  getVisibleContacts,
+} from './contacts-selectors';

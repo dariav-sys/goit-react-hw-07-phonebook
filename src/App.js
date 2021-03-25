@@ -1,49 +1,54 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
+import AppBar from './components/AppBar/AppBar';
+import { Switch } from 'react-router-dom';
+import { getCurrentUser } from './redux/auth';
 import { connect } from 'react-redux';
-import Loader from 'react-loader-spinner';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
-import ContactForm from './components/contactForm';
-import Filter from './components/filter';
-import ContactItem from './components/contactItem/ContactItem';
-import { phonebookSelectors, phonebookOperations } from './redux/phonebook';
+const HomePage = lazy(() => import('./views/Homepage/Homepage.js'));
+const Contacts = lazy(() => import('./views/Contacts/Contacts.js'));
+const Register = lazy(() => import('./views/Register/Register.js'));
+const Login = lazy(() => import('./views/Login/Login.js'));
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchContacts();
+    this.props.onGetCurrentUser();
   }
 
   render() {
-    const { error, isLoading, isContactIncluded } = this.props;
     return (
-      <div className="container">
-        <h1 className="header">The Phonebook</h1>
-        <ContactForm />
-        {error && <h2>{error}</h2>}
-
-        {isLoading && <Loader className="loader" />}
-        {isContactIncluded && (
-          <>
-            <Filter />
-            <ul className="contacts">
-              <ContactItem filtered={this.props.contacts} />
-            </ul>
-          </>
-        )}
-      </div>
+      <>
+        <AppBar />
+        <Suspense fallback={<p>Загружаем...</p>}>
+          <Switch>
+            <PublicRoute exact path="/" component={HomePage} />
+            <PrivateRoute
+              path="/contacts"
+              component={Contacts}
+              redirectTo="/login"
+            />
+            <PublicRoute
+              path="/register"
+              restricted
+              component={Register}
+              redirectTo="/contacts"
+            />
+            <PublicRoute
+              path="/login"
+              restricted
+              component={Login}
+              redirectTo="/contacts"
+            />
+          </Switch>
+        </Suspense>
+      </>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  contacts: phonebookSelectors.getFilteredContacts(state),
-  filter: phonebookSelectors.getFiltered(state),
-  isContactIncluded: state.contacts.items.length > 0,
-  isLoading: phonebookSelectors.getLoading(state),
-  error: phonebookSelectors.getErrorMessage(state),
-});
+const mapDispatchToProps = {
+  onGetCurrentUser: getCurrentUser,
+};
 
-const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(phonebookOperations.fetchContacts()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

@@ -1,17 +1,21 @@
 .contact {
   display: flex;
-  margin: 10px;
-  font-size: 15px;
-  font-style: italic;
   align-items: center;
+  justify-content: flex-start;
+  margin-left: 86px;
 }
 
 .button {
-  margin: 10px;
-  background-color: rgb(216, 144, 144);
   color: white;
-  border-radius: 5px;
-  border: none;
   padding: 5px;
-  text-transform: uppercase;
+  cursor: pointer;
+  float: left;
+  border: none;
+  margin-right: 15px;
+}
+
+.button:hover {
+  background: red;
+
+  color: #fff;
 }

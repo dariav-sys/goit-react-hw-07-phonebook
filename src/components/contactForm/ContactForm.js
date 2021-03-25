@@ -1,28 +1,29 @@
 import React, { Component } from 'react';
 import styles from './ContactForm.module.css';
 
-import shortid from 'shortid';
 import { connect } from 'react-redux';
-import { phonebookSelectors, phonebookOperations } from '../../redux/phonebook';
+import { getAllContactsItems, addContact } from '../../redux/phonebook';
 
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
-  handleChange = e => {
+
+  onHandleChange = e => {
+    const { name, value } = e.target;
     this.setState({
-      [e.target.name]: e.target.value,
+      [name]: value,
     });
   };
 
-  handleSubmit = e => {
+  onHandleSubmit = e => {
     e.preventDefault();
-    if (!this.state.name || !this.state.number) return;
+    const { name, number } = this.state;
+    if (!name || !number) return;
     this.props.onSubmit({
-      id: shortid.generate(),
-      name: this.state.name,
-      number: this.state.number,
+      name,
+      number,
     });
 
     this.setState({
@@ -33,28 +34,28 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <form className={styles.form} onSubmit={this.handleSubmit}>
+      <form className={styles.form} onSubmit={this.onHandleSubmit}>
         <label>
           <input
-            className={styles.data_input}
+            className={styles.input}
             placeholder="Name:"
             type="text"
             name="name"
             value={this.state.name}
-            onChange={this.handleChange}
+            onChange={this.onHandleChange}
           ></input>
         </label>
         <label>
           <input
-            className={styles.data_input}
+            className={styles.input}
             placeholder="Number:"
             type="text"
             name="number"
             value={this.state.number}
-            onChange={this.handleChange}
+            onChange={this.onHandleChange}
           ></input>
         </label>
-        <button className={styles.add_button} type="submit">
+        <button className={styles.button} type="submit">
           ADD
         </button>
       </form>
@@ -63,11 +64,11 @@ class ContactForm extends Component {
 }
 
 const mapDispatchToProps = {
-  onSubmit: phonebookOperations.addContact,
+  onSubmit: addContact,
 };
 
 const mapStateToProps = state => ({
-  contacts: phonebookSelectors.getAllContacts(state),
+  contacts: getAllContactsItems(state),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
