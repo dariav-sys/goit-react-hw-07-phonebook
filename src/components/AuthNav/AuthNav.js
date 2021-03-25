@@ -12,7 +12,7 @@ class AuthNav extends Component {
           className={navLink}
           activeClassName={activeNavLink}
         >
-          Register
+          Sign up
         </NavLink>
         <NavLink
           to="/login"
@@ -20,7 +20,7 @@ class AuthNav extends Component {
           className={navLink}
           activeClassName={activeNavLink}
         >
-          Log in
+          Sign in
         </NavLink>
       </div>
     );
