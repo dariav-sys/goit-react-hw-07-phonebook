@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack://src/views/Homepage/Homepage.module.css"],"names":[],"mappings":"AAAA,0BACE,iBAAkB,CAClB,iBAAkB,CAClB,OAAQ,CACR,QAAS,CACT,sCAAgC,CAAhC,8BACF","file":"5.88142314.chunk.css","sourcesContent":[".homepage {\n  text-align: center;\n  position: absolute;\n  top: 30%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n"]}
