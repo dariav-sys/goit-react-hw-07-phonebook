@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Loader from 'react-loader-spinner';
 import ContactForm from '../../components/ContactForm/ContactForm';
 import ContactsItem from '../../components/ContactItem/ContactItem';
 import Filter from '../../components/Filter/Filter';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   getLoading,
   getErrorMessage,
-  getVisibleContacts,
   fetchContacts,
+  getIsContactList,
 } from '../../redux/phonebook';
 import {
   container,
@@ -17,44 +17,32 @@ import {
   loader,
 } from './Contacts.module.css';
 
-class Contacts extends Component {
-  componentDidMount() {
-    this.props.fetchContacts();
-  }
+export default function Contacts() {
+  const isAnyContactList = useSelector(getIsContactList);
+  const isLoadingContacts = useSelector(getLoading);
+  const error = useSelector(getErrorMessage);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
-  render() {
-    const { isLoadingContacts, isContactIncludes, error } = this.props;
-    return (
-      <div className={container}>
-        <ContactForm />
-        {error && <p className="error-message">{error}</p>}
-        {isLoadingContacts && (
-          <div>
-            <Loader className={loader} />
-          </div>
-        )}
-        {isContactIncludes && (
-          <div className={contactsCont}>
-            <Filter />
-            <ul className={contactsList}>
-              <ContactsItem filtered={this.props.contacts} />
-            </ul>
-          </div>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className={container}>
+      <ContactForm />
+      {error && <p className="error-message">{error}</p>}
+      {isLoadingContacts && (
+        <div>
+          <Loader className={loader} />
+        </div>
+      )}
+      {isAnyContactList && (
+        <div className={contactsCont}>
+          <Filter />
+          <ul className={contactsList}>
+            <ContactsItem />
+          </ul>
+        </div>
+      )}
+    </div>
+  );
 }
-
-const mapStateToProps = state => ({
-  contacts: getVisibleContacts(state),
-  isContactIncludes: state.contacts.items.length > 0,
-  isLoadingContacts: getLoading(state),
-  error: getErrorMessage(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  fetchContacts: () => dispatch(fetchContacts()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Contacts);

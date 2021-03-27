@@ -1,15 +1,17 @@
 import React from 'react';
 import styles from './ContactItem.module.css';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { deleteContact } from '../../redux/phonebook';
+import { deleteContact, getVisibleContacts } from '../../redux/phonebook';
 
-const ContactItem = ({ filtered, onDelete }) => {
+export default function ContactItem() {
+  const filtered = useSelector(getVisibleContacts);
+  const dispatch = useDispatch();
   return filtered.map(({ name, number, id }) => {
     return (
       <li className={styles.contact} name={name} key={id}>
         <div className={styles.button}>
-          <button type="button" onClick={() => onDelete(id)}>
+          <button type="button" onClick={() => dispatch(deleteContact(id))}>
             X
           </button>
         </div>
@@ -17,10 +19,4 @@ const ContactItem = ({ filtered, onDelete }) => {
       </li>
     );
   });
-};
-
-const mapDispatchToProps = {
-  onDelete: deleteContact,
-};
-
-export default connect(null, mapDispatchToProps)(ContactItem);
+}

@@ -1,26 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { getUsername, logOut } from '../../redux/auth';
 import { usermenuCont, userName, button } from './UserMenu.module.css';
 
-const UserMenu = ({ name, logOut }) => {
+export default function UserMenu() {
+  const dispatch = useDispatch();
+  const name = useSelector(getUsername);
+  const onLogOut = useCallback(() => {
+    dispatch(logOut());
+  }, [dispatch]);
   return (
     <div className={usermenuCont}>
       <span className={userName}>{name}, welcome to The Phonebook! </span>
-      <button type="button" onClick={logOut} className={button}>
+      <button type="button" onClick={onLogOut} className={button}>
         Log out
       </button>
     </div>
   );
-};
-
-const mapStateToProps = state => ({
-  name: getUsername(state),
-});
-
-const mapDispatchToProps = {
-  logOut,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserMenu);
+}

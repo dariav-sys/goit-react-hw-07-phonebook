@@ -8,5 +8,6 @@ export {
   getFiltered,
   getAllContactsItems,
   getErrorMessage,
+  getIsContactList,
   getVisibleContacts,
 } from './contacts-selectors';
